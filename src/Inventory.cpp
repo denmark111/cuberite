@@ -1,4 +1,4 @@
-
+﻿
 #include "Globals.h"  // NOTE: MSVC stupidness requires this to be the same across all modules
 
 #include "Inventory.h"
@@ -651,6 +651,9 @@ void cInventory::SaveToJson(Json::Value & a_Value)
 		m_HotbarSlots.GetSlot(i).GetJson(JSON_Item);
 		a_Value.append(JSON_Item);
 	}
+
+	// Hotbar selection save: 
+	m_HotbarSlots.GetLastUsedSlot();
 
 	// Shield slot is the last
 	Json::Value JSON_Item;
