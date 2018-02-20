@@ -2156,7 +2156,7 @@ bool cPlayer::LoadFromFile(const AString & a_FileName, cWorldPtr & a_World)
 	m_IsFlying            = root.get("isflying",       0).asBool();
 	
 	m_Inventory.SetEquippedSlotNum(root.get("lastHotbar", 0).asInt());
-	LOGD("lastHotbar loaded : %d\n", m_Inventory.GetEquippedSlotNum());
+	//LOGD("lastHotbar loaded : %d\n", m_Inventory.GetEquippedSlotNum());
 
 	m_GameMode = static_cast<eGameMode>(root.get("gamemode", eGameMode_NotSet).asInt());
 
