@@ -652,9 +652,6 @@ void cInventory::SaveToJson(Json::Value & a_Value)
 		a_Value.append(JSON_Item);
 	}
 
-	// Hotbar selection save: 
-	m_HotbarSlots.GetLastUsedSlot();
-
 	// Shield slot is the last
 	Json::Value JSON_Item;
 	m_ShieldSlots.GetSlot(0).GetJson(JSON_Item);

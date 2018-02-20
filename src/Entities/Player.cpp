@@ -1,4 +1,4 @@
-
+﻿
 #include "Globals.h"  // NOTE: MSVC stupidness requires this to be the same across all modules
 
 #include <unordered_map>
@@ -2154,6 +2154,9 @@ bool cPlayer::LoadFromFile(const AString & a_FileName, cWorldPtr & a_World)
 	m_LifetimeTotalXp     = root.get("xpTotal",        0).asInt();
 	m_CurrentXp           = root.get("xpCurrent",      0).asInt();
 	m_IsFlying            = root.get("isflying",       0).asBool();
+	
+	m_Inventory.SetEquippedSlotNum(root.get("lastHotbar", 0).asInt());
+	LOGD("lastHotbar loaded : %d\n", m_Inventory.GetEquippedSlotNum());
 
 	m_GameMode = static_cast<eGameMode>(root.get("gamemode", eGameMode_NotSet).asInt());
 
@@ -2263,6 +2266,10 @@ bool cPlayer::SaveToDisk()
 	root["foodSaturation"]      = m_FoodSaturationLevel;
 	root["foodTickTimer"]       = m_FoodTickTimer;
 	root["foodExhaustion"]      = m_FoodExhaustionLevel;
+
+	root["lastHotbar"]			= m_Inventory.GetEquippedSlotNum();
+	LOGD("lastHotbar saved : %d\n", m_Inventory.GetEquippedSlotNum());
+
 	root["isflying"]            = IsFlying();
 	root["lastknownname"]       = GetName();
 	root["SpawnX"]              = GetLastBedPos().x;
